@@ -7,6 +7,43 @@ by the buttons and display the entry in the 3rd entry widget;
 
 import tkinter as tk
 
+def mult(e):
+    data1 = e[0]
+    data2 = e[1]
+    data1 = int(data1)
+    data2 = int(data2)
+    ans = data1 * data2
+    e[2].delete(0,tk.END)
+    e[2].insert(0,ans)
+
+def add(e):
+    data1 = e[0]
+    data2 = e[1]
+    data1 = int(data1)
+    data2 = int(data2)
+    ans = data1 + data2
+    e[2].delete(0,tk.END)
+    e[2].insert(0,ans)
+
+def minus(e):
+    data1 = e[0]
+    data2 = e[1]
+    data1 = int(data1)
+    data2 = int(data2)
+    ans = data1 - data2
+    e[2].delete(0,tk.END)
+    e[2].insert(0,ans)
+
+def div(e):
+    data1 = e[0]
+    data2 = e[1]
+    data1 = int(data1)
+    data2 = int(data2)
+    ans = data1 / data2
+    e[2].delete(0,tk.END)
+    e[2].insert(0,ans)
+
+
 w = tk.Tk()
 w.attributes("-topmost",True)
 
@@ -25,6 +62,11 @@ b.append(tk.Button(w,text="x"))
 b.append(tk.Button(w,text="+"))
 b.append(tk.Button(w,text="-"))
 b.append(tk.Button(w,text="÷"))
+
+b[0].bind("<Button-1>", mult)
+b[1].bind("<Button-1>", add)
+b[2].bind("<Button-1>", minus)
+b[3].bind("<Button-1>", div)
 
 l[2].grid(row=1,column=1,columnspan=4)
 l[0].grid(row=2,column=1,columnspan=2)
