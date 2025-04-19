@@ -30,7 +30,7 @@ l1 = tk.Label(text="Enter short sides of triangle to get hypotenuse")
 l2 = tk.Label(win, image=triangle)
 e1 = tk.Entry(win, width=15, borderwidth=5, relief="raised", justify="center")
 e2 = tk.Entry(win, width=15, borderwidth=5, relief="raised", justify="center")
-e3 = tk.Entry(win, width=15, borderwidth=5, relief="raised", justify="center", state="disabled")
+e3 = tk.Entry(win, width=15, borderwidth=5, relief="sunken", justify="center")
 b1 = tk.Button(win, width=10, text="Calculate")
 
 b1.bind("<Button-1>", run)
