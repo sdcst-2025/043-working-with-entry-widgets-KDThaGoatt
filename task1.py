@@ -14,7 +14,7 @@ def run(e):
     data1 = e1.get()
     data2 = e2.get()
     data3 = e3.get()
-    combine = (f"{data1}, {data2}, {data3}")
+    combine = (f"{data1}, {data2}, Grade {data3}")
     e4.delete(0,tk.END)
     e4.insert(0,combine)    
 
