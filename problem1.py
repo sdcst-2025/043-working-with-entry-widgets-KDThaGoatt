@@ -16,6 +16,7 @@ between + and -.
 
 import tkinter as tk
 from tkinter import *
+import math
 
 def toggle1(e):
     text = b1["text"]
@@ -45,29 +46,27 @@ def factor(e):
     if posneg2 == "-":
         data2 = -data2
 
-    factors = []
-    for i in range(-abs(data2) - 1, abs(data2) + 1):
-        if i != 0 and data2 % i == 0:
-            n = data2 // i
-            if n + i == data1:
-                posneg3 = False
-                posneg4 = False
-                factors.append((i, n))
-                if i < 0:
-                    posneg3 = True
-                if n < 0:
-                    posneg4 = True
-                if posneg3 == True:
-                    posneg3 = "-"
-                if posneg3 == False:
-                    posneg3 = "+"
-                if posneg4 == True:
-                    posneg4 = "-"
-                if posneg4 == False:
-                    posneg4 = "+"
-                print(factors)
-                answer = (f"x {posneg3} {factors[0][0]}, x {posneg4} {factors[0][1]}")
-                print(answer)
+    quadraticpos = (-data1 + (math.sqrt(data1**2 - 4*data2)))/2
+    quadraticneg = (-data1 - (math.sqrt(data1**2 - 4*data2)))/2
+    final1 = quadraticpos * -1
+    final2 = quadraticneg * -1
+
+    if final1 > 0:
+        posneg3 = "+"
+    elif final1 < 0:
+        posneg3 = "-"
+        final1 = final1 * -1
+    if final2 > 0:
+        posneg4 = "+"
+    elif final2 < 0:
+        posneg4 = "-"
+        final2 = final2 * -1
+
+    factor = (f"(x {posneg3} {final1})(x {posneg4} {final2})")
+
+    e3.delete(0,tk.END)
+    e3.insert(0,factor)
+
 
 win = tk.Tk()
 win.geometry("393x100")
@@ -81,6 +80,7 @@ e3 = tk.Entry(width=23, borderwidth=2, relief="groove")
 b1 = tk.Button(text="+")
 b2 = tk.Button(text="+")
 b3 = tk.Button(text="Factor", justify="center", width=19)
+l4 = tk.Label(text="Toggle +/- buttons \n as needed", width=15, borderwidth=2, relief="groove", anchor=W)
 
 l1.grid(row=0,column=0,columnspan=3, sticky=N)
 l2.grid(row=1, column=0, sticky=W)
@@ -91,6 +91,7 @@ b1.grid(row=1,column=0, sticky=E)
 b2.grid(row=1,column=2, sticky=W)
 b3.grid(row=2, column=1)
 e3.grid(row=3, column=1, columnspan=2, sticky=W)
+l4.grid(row=2, column=0, rowspan=2)
 
 b1.bind("<Button-1>", toggle1)
 b2.bind("<Button-1>", toggle2)
